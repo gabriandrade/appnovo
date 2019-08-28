@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +15,14 @@ import { FormCategoriasComponent } from './categorias/form-categorias/form-categ
 import { ListaCategoriasComponent } from './categorias/lista-categorias/lista-categorias.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
+import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { CriarContaComponent } from './usuario/criar-conta/criar-conta.component';
+import { LoginComponent } from './usuario/login/login.component';
+import { EsqueciSenhaComponent } from './usuario/esqueci-senha/esqueci-senha.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +33,23 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     HomeLayoutComponent,
     LoginLayoutComponent,
     FormCategoriasComponent,
-    ListaCategoriasComponent
+    ListaCategoriasComponent,
+    FormProdutosComponent,
+    ListaProdutosComponent,
+    CriarContaComponent,
+    LoginComponent,
+    EsqueciSenhaComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     ToastrModule.forRoot()
   ],
   providers: [],

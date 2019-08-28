@@ -16,7 +16,7 @@ export class ListaCategoriasComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.categorias = this.categoriasService.getALL();
+    this.categorias = this.categoriasService.getAll();
   }
 
 remover(key: string) {
