@@ -35,7 +35,7 @@ export class UsuarioService {
             resolve();
           } else {
             this.logout();
-            reject('Seu e-mail ainda não foi verificado. Por favor verifique seu e-mail.');
+            reject('Seu e-mail ainda não foi verificado. Por favor verifique seu e-mail.')
           }
         })
         .catch((error: any) => {
@@ -80,7 +80,7 @@ export class UsuarioService {
   }
 
   getDadosUsuario() {
-    const path = `${FirebasePath.USUARIOS}${this.afAuth.auth.currentUser.uid}`;
+    const path = `${FirebasePath.USUARIOS}${this.afAuth.auth.currentUser.uid}`
     return this.db.object(path).snapshotChanges().pipe(
       map(change => {
         return ({ key: change.key, nome: this.afAuth.auth.currentUser.displayName, ...change.payload.val() });
@@ -92,7 +92,7 @@ export class UsuarioService {
     return new Promise((resolve, reject) => {
       this.afAuth.auth.currentUser.updateProfile({ displayName: values.nome, photoURL: this.afAuth.auth.currentUser.photoURL });
 
-      const path = `${FirebasePath.USUARIOS}${this.afAuth.auth.currentUser.uid}`;
+      const path = `${FirebasePath.USUARIOS}${this.afAuth.auth.currentUser.uid}`
       this.db.object(path).update({ telefone: values.telefone, cpf: values.cpf })
         .then(() => resolve())
         .catch(() => reject());
@@ -114,7 +114,7 @@ export class UsuarioService {
           }));
         })
       ).subscribe();
-    });
+    })
   }
 
   removeImg(filePath: string) {

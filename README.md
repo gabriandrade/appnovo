@@ -25,4 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# deliveryweb
+
+## firebase-config.ts
+
+é necessário um arquivo firebase-config.ts na pasta src ... que tem a configuração do banco Firebase, inclua as configurações no arquivo 
+enviroment.ts
+
+import { firebaseconfig } from "src/firebase-config";
+export const environment = {
+  production: true,
+  firebase: firebaseconfig
+};
+

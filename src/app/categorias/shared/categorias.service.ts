@@ -21,8 +21,8 @@ categoriasRef: AngularFireList<any>;
   // }
 
   update(categoria: any, key: string) {
-    const updateObj = {};
-    const path = 'categorias/' + key;
+    let updateObj = {}
+    const path = 'categorias/'+key;
     const pathp = 'produtos/';
     updateObj[path] = categoria;
 
@@ -33,20 +33,19 @@ categoriasRef: AngularFireList<any>;
         updateObj[`${pathp}${produto.key}/categoriaNome`] = categoria.nome;
       });
 
-      this.db.object('/').update(updateObj);
     });
   }
 
   getAll() {
     return this.categoriasRef.snapshotChanges().pipe(
       map(changes => {
-        return changes.map(m => ({key: m.payload.key, ...m.payload.val() }));
+        return changes.map(m => ({key: m.payload.key, ...m.payload.val() }))
       })
-    );
+    )
   }
 
   getByKey(key: string) {
-    const path = 'categorias/' + key;
+    const path = 'categorias/'+key;
     return this.db.object(path).snapshotChanges().pipe(
       map(change => {
         return ({ key: change.key, ...change.payload.val() });
@@ -60,20 +59,21 @@ categoriasRef: AngularFireList<any>;
     .snapshotChanges()
     .pipe(
       map(changes => {
-        return changes.map(m => ({ key: m.key }));
+        return changes.map(m => ({ key: m.key }))
       })
-    );
+    )
   }
 
-  remove(key: string) {
+  remove(key: string){
     return new Promise((resolve, reject) => {
           const subscribe = this.getProdutosByCategoria(key).subscribe((produtos: any) => {
             subscribe.unsubscribe();
 
-            if (produtos.length = 0) {
+            if (produtos.length == 0) {
               return this.categoriasRef.remove(key);
+
             } else {
-              reject('Não é possível excluir a categoria pois ela tem produtos associados.');
+              reject('Não é possível excluir a categoria pois ela tem produtos associados.')
             }
           });
     });

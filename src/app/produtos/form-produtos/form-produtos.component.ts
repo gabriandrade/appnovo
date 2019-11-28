@@ -84,6 +84,7 @@ export class FormProdutosComponent implements OnInit {
       if (categorias && this.formProduto.value.categoriaKey) {
         const categoriaNome = categorias[0].text;
         this.categoriaNome.setValue(categoriaNome);
+        this.formProduto.value.categoriaNome.setValue()
       } else {
         this.categoriaNome.setValue('');
       }
@@ -126,5 +127,5 @@ export class FormProdutosComponent implements OnInit {
         this.toastr.success('Produtos salvo com sucesso!!!');
       }
     }
-  }
 
+}

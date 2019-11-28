@@ -10,15 +10,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./form-categorias.component.css']
 })
 export class FormCategoriasComponent implements OnInit {
-formCategoria: FormGroup;
-key: string;
+  formCategoria: FormGroup;
+  key: string;
 
   constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private categoriasService: CategoriasService,
-              private toastr: ToastrService,
-              private router: Router
-    ) { }
+    private route: ActivatedRoute,
+    private categoriasService: CategoriasService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.criarFormulario();
@@ -28,7 +28,8 @@ key: string;
         .subscribe((categorias: any) => {
 
           categoriaSubscribe.unsubscribe();
-          this.formCategoria.setValue({nome: categorias.nome, descricao: categorias.descricao});
+
+          this.formCategoria.setValue({ nome: categorias.nome, descricao: categorias.descricao });
         });
     }
 

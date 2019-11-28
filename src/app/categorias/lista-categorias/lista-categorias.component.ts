@@ -9,21 +9,24 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./lista-categorias.component.css']
 })
 export class ListaCategoriasComponent implements OnInit {
-  categorias: Observable<any[]>;
-
+categorias: Observable<any[]>;
 
   constructor(private categoriasService: CategoriasService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService
+              ) { }
 
   ngOnInit() {
     this.categorias = this.categoriasService.getAll();
   }
 
-remover(key: string) {
-  this.categoriasService.remove(key)
-  .catch((mensagem: string ) => {
-      this.toastr.error(mensagem);
-  });
-}
+  remover(key: string) {
+    this.categoriasService.remove(key)
+      .then( (mensagem) => {
+        this.toastr.success('Categoria excluida com sucesso!');
+      })
+      .catch((mensagem: string) => {
+        this.toastr.error(mensagem);
+      });
+  }
 
 }
