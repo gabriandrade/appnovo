@@ -45,7 +45,7 @@ const routes: Routes = [
       { path: 'esqueci-senha', component:  EsqueciSenhaComponent}
     ]
   },
-  { path: '**', redirectTo:''}
+  { path: '**', redirectTo: ''}
 
 ];
 

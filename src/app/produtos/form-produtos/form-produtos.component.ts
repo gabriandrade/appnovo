@@ -42,7 +42,6 @@ export class FormProdutosComponent implements OnInit {
             this.formProduto.setValue({
               nome: produtos.nome,
               descricao: produtos.descricao,
-              preco: produtos.preco,
               categoriaKey: produtos.categoriaKey,
               categoriaNome: produtos.categoriaNome,
               img: ''
@@ -58,7 +57,6 @@ export class FormProdutosComponent implements OnInit {
 
     get nome() { return this.formProduto.get('nome'); }
     get descricao() { return this.formProduto.get('descricao'); }
-    get preco() { return this.formProduto.get('preco'); }
     get categoriaKey() { return this.formProduto.get('categoriaKey'); }
     get categoriaNome() { return this.formProduto.get('categoriaNome'); }
 
@@ -67,16 +65,10 @@ export class FormProdutosComponent implements OnInit {
       this.key = null;
       this.formProduto = this.formBuilder.group({
         nome: ['', Validators.required],
-        descricao: [''],
-        preco: ['', Validators.required],
         categoriaKey: ['', Validators.required],
         categoriaNome: [''],
-        img: ['']
       });
 
-      this.file = null;
-      this.imgUrl = '';
-      this.filePath = '';
     }
 
 
@@ -84,24 +76,10 @@ export class FormProdutosComponent implements OnInit {
       if (categorias && this.formProduto.value.categoriaKey) {
         const categoriaNome = categorias[0].text;
         this.categoriaNome.setValue(categoriaNome);
-        this.formProduto.value.categoriaNome.setValue()
+        this.formProduto.value.categoriaNome.setValue();
       } else {
         this.categoriaNome.setValue('');
       }
-    }
-
-    upload(event: any) {
-      if (event.target.files.length) {
-        this.file = event.target.files[0];
-      } else {
-        this.file = null;
-      }
-    }
-
-    removerImg() {
-      this.produtosService.removeImg(this.filePath, this.key);
-      this.imgUrl = '';
-      this.filePath = '';
     }
 
     onSubmit() {
